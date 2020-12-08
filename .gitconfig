@@ -1,0 +1,16 @@
+[user]
+	name = yuya
+	email = blue_sky_sora8@yahoo.co.jp
+[core]
+	quotepath = false
+	sshCommand = 'C:\\Program Files\\OpenSSH-Win64\\ssh.exe'
+[gui]
+	encoding = utf-8
+[winUpdater]
+	recentlySeenVersion = 2.24.1.windows.2
+[alias]
+	a = add -A
+	c = commit -m
+	p = push
+[color]
+	ui = true
