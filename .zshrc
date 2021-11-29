@@ -113,13 +113,18 @@ alias gp='git push'
 alias gpl='git pull'
 alias gst='git status'
 alias gsw='git switch'
+alias gswm='git switch master'
 alias grm='git rebase master'
 alias gri='git rebase -i'
+alias gri2='git rebase -i HEAD~2'
 
 # docker
 alias d='docker'
 alias dc='docker-compose'
 alias dcdv='docker-compose down -v'
+alias dceas='docker-compose exec app sh'
+alias dcup='./docker-compose-with-search.sh up'
+alias dcstop='./docker-compose-with-search.sh stop'
 
 # npm
 alias nrs='npm run serve'
