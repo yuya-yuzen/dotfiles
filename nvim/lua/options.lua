@@ -1,4 +1,6 @@
 local options = {
+  helplang = "ja",
+
   number = true,
 
   cursorline = true,
@@ -18,6 +20,7 @@ local options = {
   shiftwidth = 2,
   tabstop = 2,
   smartindent = true,
+  autoindent = true,
 
   showtabline = 2,
 
@@ -38,6 +41,8 @@ local options = {
   sidescrolloff = 8,
 
   guifont = "Ricty:h18",
+
+  autoread = true,
 }
 
 for key, value in pairs(options) do
