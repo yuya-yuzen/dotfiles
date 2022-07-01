@@ -35,11 +35,9 @@ return require("packer").startup(function()
     requires = {
       "nvim-lua/plenary.nvim",
       "kyazdani42/nvim-web-devicons"
-    }
+    },
+    config = function() require("plugins.telescope") end
   }
-
-  -- telescopeでアイコン表示するため
-  use "lambdalisue/nerdfont.vim"
 
   -- ドキュメントの日本語化
   use "vim-jp/vimdoc-ja"
@@ -54,6 +52,58 @@ return require("packer").startup(function()
   use {
     "nvim-lualine/lualine.nvim",
     requires = "kyazdani42/nvim-web-devicons",
-    config = function() require("plugins.lualine") end
+    config = function() require("lualine").setup() end
+  }
+
+  -- バッファライン
+  use {
+    'akinsho/bufferline.nvim',
+    tag = "v2.*",
+    requires = 'kyazdani42/nvim-web-devicons',
+    config = function() require("plugins.bufferline") end
+  }
+
+  -- 自動で括弧を閉じる
+  use {
+    "windwp/nvim-autopairs",
+    config = function() require("nvim-autopairs").setup() end
+  }
+
+  -- ターミナル
+  use {
+    "akinsho/toggleterm.nvim",
+    tag = 'v1.*',
+    config = function() require("plugins.toggleterm") end
+  }
+
+  -- インデントをわかりやすくする
+  use {
+    "lukas-reineke/indent-blankline.nvim",
+    config = function() require("plugins.indent-blankline") end
+  }
+
+  -- ファイル内検索をわかりやすくする
+  use "kevinhwang91/nvim-hlslens"
+
+  -- スクロールバーを表示する
+  use {
+    "petertriho/nvim-scrollbar",
+    requires = {
+      "kevinhwang91/nvim-hlslens",
+      "folke/tokyonight.nvim"
+    },
+    config = function() require("plugins.nvim-scrollbar") end
+  }
+
+  -- Git
+  use {
+    'lewis6991/gitsigns.nvim',
+    config = function() require('gitsigns').setup() end
+  }
+  use {
+    'sindrets/diffview.nvim',
+    requires = 'nvim-lua/plenary.nvim',
+    config = function() require("plugins.diffview") end
   }
 end)
+

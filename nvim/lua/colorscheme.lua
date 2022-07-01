@@ -1,2 +1,2 @@
-vim.cmd([[colorscheme monokai]])
+vim.api.nvim_command('colorscheme monokai')
 

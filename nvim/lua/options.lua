@@ -43,6 +43,8 @@ local options = {
   guifont = "Ricty:h18",
 
   autoread = true,
+
+  cmdheight = 2,
 }
 
 for key, value in pairs(options) do
