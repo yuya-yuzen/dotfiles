@@ -40,6 +40,8 @@ keymap("n", "<C-s>", ":w<CR>", opts)
 keymap("n", "<C-a>", "^", opts)
 keymap("n", "<C-e>", "$", opts)
 
+keymap("n", "Y", "y$", opts)
+
 -- Stay in indent mode
 keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
@@ -48,4 +50,3 @@ keymap("v", ">", ">gv", opts)
 keymap("v", "∆", ":m .+1<CR>", opts)
 keymap("v", "˚", ":m .-2<CR>", opts)
 keymap("v", "p", '"_dP', opts)
-

@@ -31,7 +31,7 @@ local options = {
   splitbelow = true,
   splitright = true,
 
-  completeopt = { "menuone", "noinsert"},
+  completeopt = { "menuone", "noinsert" },
 
   conceallevel = 0,
 
@@ -44,7 +44,12 @@ local options = {
 
   autoread = true,
 
-  cmdheight = 2,
+  display = 'lastline',
+
+  pumheight = 10,
+
+  showmatch = true,
+  matchtime = 1,
 }
 
 for key, value in pairs(options) do

@@ -1,4 +1,4 @@
-vim.cmd[[packadd packer.nvim]]
+vim.cmd [[packadd packer.nvim]]
 
 -- Autocommand that reloads neovim whenever you save the plugins.lua file
 vim.cmd [[
@@ -8,8 +8,7 @@ vim.cmd [[
   augroup end
 ]]
 
-return require("packer").startup(function()
-  -- packer自身
+return require("packer").startup(function(use)
   use "wbthomason/packer.nvim"
 
   -- monokaiテーマ
@@ -105,5 +104,37 @@ return require("packer").startup(function()
     requires = 'nvim-lua/plenary.nvim',
     config = function() require("plugins.diffview") end
   }
-end)
+  use {
+    "APZelos/blamer.nvim",
+    config = function() require("blamer") end
+  }
 
+  -- LSP
+  use "neovim/nvim-lspconfig" -- enable LSP
+  use "williamboman/nvim-lsp-installer" -- simple to use language server installer
+
+  -- cmp
+  use "hrsh7th/nvim-cmp"
+  use "hrsh7th/cmp-nvim-lsp"
+  use "hrsh7th/cmp-vsnip"
+  use "hrsh7th/cmp-buffer"
+
+  -- snippet
+  use "L3MON4D3/LuaSnip"
+  use "rafamadriz/friendly-snippets"
+
+  -- フォーマッタ・リンタ
+  use {
+    "jose-elias-alvarez/null-ls.nvim",
+    requires = { "nvim-lua/plenary.nvim" }
+  }
+
+  -- Rubyでdefを書いた際に自動でendを追加する
+  use "tpope/vim-endwise"
+
+  -- Rubocopで使用
+  use {
+    "w0rp/ale",
+    config = function() require("ale") end
+  }
+end)
