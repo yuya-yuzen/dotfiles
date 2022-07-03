@@ -32,7 +32,7 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
 end
 
-vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]]
+vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
 
 local lsp_installer = require "nvim-lsp-installer"
 local lspconfig = require "lspconfig"

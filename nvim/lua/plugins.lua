@@ -19,6 +19,31 @@ return require("packer").startup(function(use)
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
   }
+  use {
+    "p00f/nvim-ts-rainbow",
+    requires = { 'nvim-treesitter/nvim-treesitter' },
+    config = function() require("plugins.nvim-ts-rainbow") end
+  }
+  use {
+    "haringsrob/nvim_context_vt",
+    requires = { 'nvim-treesitter/nvim-treesitter' },
+    config = function() require("nvim_context_vt").setup() end
+  }
+  use {
+    'm-demare/hlargs.nvim',
+    requires = { 'nvim-treesitter/nvim-treesitter' },
+    config = function() require('hlargs').setup() end
+  }
+  use {
+    "SmiteshP/nvim-gps",
+    requires = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-lualine/lualine.nvim",
+    },
+    config = function()
+      require("nvim-gps").setup()
+    end
+  }
 
   -- ファイラー
   use {
@@ -51,7 +76,7 @@ return require("packer").startup(function(use)
   use {
     "nvim-lualine/lualine.nvim",
     requires = "kyazdani42/nvim-web-devicons",
-    config = function() require("lualine").setup() end
+    config = function() require("plugins.lualine") end
   }
 
   -- バッファライン
@@ -112,12 +137,25 @@ return require("packer").startup(function(use)
   -- LSP
   use "neovim/nvim-lspconfig" -- enable LSP
   use "williamboman/nvim-lsp-installer" -- simple to use language server installer
+  use "onsails/lspkind.nvim"
+  use {
+    "folke/trouble.nvim",
+    requires = "kyazdani42/nvim-web-devicons",
+    config = function() require("plugins.trouble") end
+  }
+  use {
+    "j-hui/fidget.nvim",
+    config = function() require("fidget").setup() end
+  }
 
   -- cmp
   use "hrsh7th/nvim-cmp"
   use "hrsh7th/cmp-nvim-lsp"
-  use "hrsh7th/cmp-vsnip"
+  use "hrsh7th/cmp-nvim-lua"
   use "hrsh7th/cmp-buffer"
+  use "hrsh7th/cmp-path"
+  use "hrsh7th/cmp-cmdline"
+  use "saadparwaiz1/cmp_luasnip"
 
   -- snippet
   use "L3MON4D3/LuaSnip"
@@ -136,5 +174,27 @@ return require("packer").startup(function(use)
   use {
     "w0rp/ale",
     config = function() require("ale") end
+  }
+
+  -- 通知をおしゃれにする
+  use {
+    'rcarriga/nvim-notify',
+    config = function() vim.notify = require('notify') end,
+  }
+
+  -- Sidebar
+  use {
+    "sidebar-nvim/sidebar.nvim",
+    config = function()
+      require("plugins.sidebar")
+    end
+  }
+
+  -- Display Key Map
+  use {
+    "folke/which-key.nvim",
+    config = function()
+      require("which-key").setup()
+    end
   }
 end)

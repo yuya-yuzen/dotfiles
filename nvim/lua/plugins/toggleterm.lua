@@ -5,15 +5,15 @@ local opts = { noremap = true, silent = true }
 
 keymap("n", "<leader>j", ":ToggleTerm direction=float<CR>", opts)
 
-local Terminal  = require('toggleterm.terminal').Terminal
-local lazygit = Terminal:new({
+local Terminal = require('toggleterm.terminal').Terminal
+local lazygit  = Terminal:new({
   cmd = "lazygit",
   direction = "float",
   hidden = true
 })
 
-function _lazygit_toggle()
+function LazygitToggle()
   lazygit:toggle()
 end
 
-keymap("n", "lg", "<cmd>lua _lazygit_toggle()<CR>", opts)
+keymap("n", "lg", "<cmd>lua LazygitToggle()<CR>", opts)
