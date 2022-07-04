@@ -24,8 +24,8 @@ keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 
 -- Navigate buffers
-keymap("n", "<S-l>", ":bnext<CR>", opts)
-keymap("n", "<S-h>", ":bprevious<CR>", opts)
+keymap("n", "t", ":bnext<CR>", opts)
+keymap("n", "T", ":bprevious<CR>", opts)
 
 -- Move text up and down
 keymap("n", "∆", "<Esc>:m .+1<CR>", opts)
@@ -34,13 +34,16 @@ keymap("n", "˚", "<Esc>:m .-2<CR>", opts)
 -- ファイル内検索のハイライトを消す
 keymap("n", "<ESC><ESC>", ":nohl<CR>", opts)
 
--- 保存
-keymap("n", "<C-s>", ":w<CR>", opts)
-
 keymap("n", "<C-a>", "^", opts)
 keymap("n", "<C-e>", "$", opts)
 
 keymap("n", "Y", "y$", opts)
+keymap("n", "U", "<C-r>", opts)
+
+keymap("n", "<C-s>", ":split<CR>", opts)
+keymap("n", "<C-v>", ":vsplit<CR>", opts)
+
+keymap("n", "q", ":bdelete<CR>", opts)
 
 -- Stay in indent mode
 keymap("v", "<", "<gv", opts)

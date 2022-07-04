@@ -11,10 +11,10 @@ vim.cmd [[
 return require("packer").startup(function(use)
   use "wbthomason/packer.nvim"
 
-  -- monokaiテーマ
+  -- monokai
   use "tanvirtin/monokai.nvim"
 
-  -- シンタックスハイライト
+  -- Syntax Highlight
   use {
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
@@ -45,7 +45,7 @@ return require("packer").startup(function(use)
     end
   }
 
-  -- ファイラー
+  -- File Explorer
   use {
     "kyazdani42/nvim-tree.lua",
     requires = "kyazdani42/nvim-web-devicons",
@@ -53,7 +53,7 @@ return require("packer").startup(function(use)
     config = function() require("plugins.nvim-tree") end
   }
 
-  -- ファジーファインダー（ワークスペースのファイルをあいまい検索して開く）
+  -- Fazy Finder
   use {
     "nvim-telescope/telescope.nvim",
     requires = {
@@ -63,23 +63,23 @@ return require("packer").startup(function(use)
     config = function() require("plugins.telescope") end
   }
 
-  -- ドキュメントの日本語化
+  -- Japanese Help
   use "vim-jp/vimdoc-ja"
 
-  -- ヤンク時に該当範囲をハイライトする
+  -- Yank
   use "machakann/vim-highlightedyank"
 
-  -- コメントアウトをgccで実行可能
+  -- Comment Out
   use "tpope/vim-commentary"
 
-  -- ステータスライン
+  -- Status Line
   use {
     "nvim-lualine/lualine.nvim",
     requires = "kyazdani42/nvim-web-devicons",
     config = function() require("plugins.lualine") end
   }
 
-  -- バッファライン
+  -- Buffer
   use {
     'akinsho/bufferline.nvim',
     tag = "v2.*",
@@ -87,29 +87,34 @@ return require("packer").startup(function(use)
     config = function() require("plugins.bufferline") end
   }
 
-  -- 自動で括弧を閉じる
+  -- Close Brackets
   use {
     "windwp/nvim-autopairs",
     config = function() require("nvim-autopairs").setup() end
   }
+  use {
+    "windwp/nvim-ts-autotag",
+    require = "nvim-treesitter/nvim-treesitter",
+    config = function() require("nvim-ts-autotag").setup() end,
+  }
 
-  -- ターミナル
+  -- Terminal
   use {
     "akinsho/toggleterm.nvim",
     tag = 'v1.*',
     config = function() require("plugins.toggleterm") end
   }
 
-  -- インデントをわかりやすくする
+  -- Indent
   use {
     "lukas-reineke/indent-blankline.nvim",
     config = function() require("plugins.indent-blankline") end
   }
 
-  -- ファイル内検索をわかりやすくする
+  -- Search in File
   use "kevinhwang91/nvim-hlslens"
 
-  -- スクロールバーを表示する
+  -- Scrollbar
   use {
     "petertriho/nvim-scrollbar",
     requires = {
@@ -121,17 +126,28 @@ return require("packer").startup(function(use)
 
   -- Git
   use {
-    'lewis6991/gitsigns.nvim',
-    config = function() require('gitsigns').setup() end
+    'TimUntersberger/neogit',
+    requires = {
+      'nvim-lua/plenary.nvim',
+      'sindrets/diffview.nvim',
+    },
+    config = function() require("plugins.neogit") end
   }
   use {
     'sindrets/diffview.nvim',
     requires = 'nvim-lua/plenary.nvim',
-    config = function() require("plugins.diffview") end
+  }
+  use {
+    'lewis6991/gitsigns.nvim',
+    config = function() require('gitsigns').setup() end
   }
   use {
     "APZelos/blamer.nvim",
     config = function() require("blamer") end
+  }
+  use {
+    'akinsho/git-conflict.nvim',
+    config = function() require('git-conflict').setup() end
   }
 
   -- LSP
@@ -148,7 +164,7 @@ return require("packer").startup(function(use)
     config = function() require("fidget").setup() end
   }
 
-  -- cmp
+  -- Completion
   use "hrsh7th/nvim-cmp"
   use "hrsh7th/cmp-nvim-lsp"
   use "hrsh7th/cmp-nvim-lua"
@@ -157,26 +173,26 @@ return require("packer").startup(function(use)
   use "hrsh7th/cmp-cmdline"
   use "saadparwaiz1/cmp_luasnip"
 
-  -- snippet
+  -- Snippet
   use "L3MON4D3/LuaSnip"
   use "rafamadriz/friendly-snippets"
 
-  -- フォーマッタ・リンタ
+  -- Formatter, Linter
   use {
     "jose-elias-alvarez/null-ls.nvim",
     requires = { "nvim-lua/plenary.nvim" }
   }
 
-  -- Rubyでdefを書いた際に自動でendを追加する
+  -- Ruby
   use "tpope/vim-endwise"
 
-  -- Rubocopで使用
+  -- Rubocop
   use {
     "w0rp/ale",
     config = function() require("ale") end
   }
 
-  -- 通知をおしゃれにする
+  -- Notify
   use {
     'rcarriga/nvim-notify',
     config = function() vim.notify = require('notify') end,
@@ -197,4 +213,24 @@ return require("packer").startup(function(use)
       require("which-key").setup()
     end
   }
+
+  -- Startup
+  use {
+    'goolord/alpha-nvim',
+    requires = { 'kyazdani42/nvim-web-devicons' },
+    config = function()
+      require 'alpha'.setup(require 'alpha.themes.startify'.config)
+    end
+  }
+
+  -- Easymotion
+  use {
+    'phaazon/hop.nvim',
+    branch = 'v1', -- optional but strongly recommended
+    config = function() require 'plugins.hop' end,
+  }
+
+  -- Multi Cursor
+  use 'mg979/vim-visual-multi'
+
 end)
