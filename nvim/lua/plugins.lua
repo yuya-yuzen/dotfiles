@@ -44,6 +44,7 @@ return require("packer").startup(function(use)
       require("nvim-gps").setup()
     end
   }
+  use 'mtdl9/vim-log-highlighting'
 
   -- File Explorer
   use {
@@ -53,7 +54,7 @@ return require("packer").startup(function(use)
     config = function() require("plugins.nvim-tree") end
   }
 
-  -- Fazy Finder
+  -- Fuzzy Finder
   use {
     "nvim-telescope/telescope.nvim",
     requires = {
@@ -87,7 +88,7 @@ return require("packer").startup(function(use)
     config = function() require("plugins.bufferline") end
   }
 
-  -- Close Brackets
+  -- Brackets
   use {
     "windwp/nvim-autopairs",
     config = function() require("nvim-autopairs").setup() end
@@ -96,6 +97,13 @@ return require("packer").startup(function(use)
     "windwp/nvim-ts-autotag",
     require = "nvim-treesitter/nvim-treesitter",
     config = function() require("nvim-ts-autotag").setup() end,
+  }
+  use {
+    "andymass/vim-matchup",
+    require = "nvim-treesitter/nvim-treesitter",
+    config = function()
+      require("plugins.vim-matchup")
+    end
   }
 
   -- Terminal
@@ -232,5 +240,4 @@ return require("packer").startup(function(use)
 
   -- Multi Cursor
   use 'mg979/vim-visual-multi'
-
 end)
