@@ -122,6 +122,12 @@ return require("packer").startup(function(use)
   -- Search in File
   use "kevinhwang91/nvim-hlslens"
 
+  -- Scroll
+  use {
+    'yuttie/comfortable-motion.vim',
+    config = function() require("plugins.comfortable-motion") end
+  }
+
   -- Scrollbar
   use {
     "petertriho/nvim-scrollbar",
@@ -144,10 +150,11 @@ return require("packer").startup(function(use)
   use {
     'sindrets/diffview.nvim',
     requires = 'nvim-lua/plenary.nvim',
+    config = function() require("plugins.diffview") end
   }
   use {
     'lewis6991/gitsigns.nvim',
-    config = function() require('gitsigns').setup() end
+    config = function() require('plugins.gitsigns') end
   }
   use {
     "APZelos/blamer.nvim",
@@ -240,4 +247,12 @@ return require("packer").startup(function(use)
 
   -- Multi Cursor
   use 'mg979/vim-visual-multi'
+
+  -- Test
+  use {
+    "klen/nvim-test",
+    config = function()
+      require('nvim-test').setup()
+    end
+  }
 end)

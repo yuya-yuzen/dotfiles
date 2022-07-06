@@ -45,6 +45,8 @@ keymap("n", "<C-v>", ":vsplit<CR>", opts)
 
 keymap("n", "q", ":bdelete<CR>", opts)
 
+keymap("n", "<leader>t", ":tabe<CR>:terminal<CR>i", opts)
+
 -- Stay in indent mode
 keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
@@ -52,4 +54,5 @@ keymap("v", ">", ">gv", opts)
 -- Move text up and down
 keymap("v", "∆", ":m .+1<CR>", opts)
 keymap("v", "˚", ":m .-2<CR>", opts)
-keymap("v", "p", '"_dP', opts)
+
+keymap("t", "<ESC>", "<C-\\><C-n>", opts)
