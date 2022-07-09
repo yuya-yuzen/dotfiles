@@ -1,5 +1,12 @@
 vim.cmd [[packadd packer.nvim]]
 
+local fn = vim.fn
+local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+if fn.empty(fn.glob(install_path)) > 0 then
+  PACKER_BOOTSTRAP = fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim',
+    install_path })
+end
+
 -- Autocommand that reloads neovim whenever you save the plugins.lua file
 vim.cmd [[
   augroup packer_user_config
@@ -8,7 +15,22 @@ vim.cmd [[
   augroup end
 ]]
 
-return require("packer").startup(function(use)
+-- Use a protected call so we don't error out on first use
+local status_ok, packer = pcall(require, "packer")
+if not status_ok then
+  return
+end
+
+-- Have packer use a popup window
+packer.init({
+  display = {
+    open_fn = function()
+      return require("packer.util").float({ border = "rounded" })
+    end,
+  },
+})
+
+return packer.startup(function(use)
   use "wbthomason/packer.nvim"
 
   -- monokai
@@ -201,12 +223,6 @@ return require("packer").startup(function(use)
   -- Ruby
   use "tpope/vim-endwise"
 
-  -- Rubocop
-  use {
-    "w0rp/ale",
-    config = function() require("ale") end
-  }
-
   -- Notify
   use {
     'rcarriga/nvim-notify',
@@ -255,4 +271,10 @@ return require("packer").startup(function(use)
       require('nvim-test').setup()
     end
   }
+
+  -- Automatically set up your configuration after cloning packer.nvim
+  -- Put this at the end after all plugins
+  if PACKER_BOOTSTRAP then
+    require('packer').sync()
+  end
 end)

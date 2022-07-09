@@ -43,7 +43,7 @@ keymap("n", "U", "<C-r>", opts)
 keymap("n", "<C-s>", ":split<CR>", opts)
 keymap("n", "<C-v>", ":vsplit<CR>", opts)
 
-keymap("n", "q", ":bdelete<CR>", opts)
+keymap("n", "q", ":close<CR>", opts)
 
 keymap("n", "<leader>t", ":tabe<CR>:terminal<CR>i", opts)
 
