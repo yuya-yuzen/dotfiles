@@ -1,3 +1,7 @@
 # dotfiles
 
-設定ファイルをまとめたリポジトリです。
+## Neovim
+
+```shell
+$ make setup.nvim
+```
