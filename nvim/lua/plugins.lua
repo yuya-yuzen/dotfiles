@@ -223,6 +223,9 @@ return packer.startup(function(use)
   -- Ruby
   use "tpope/vim-endwise"
 
+  -- Rails
+  use "tpope/vim-rails"
+
   -- Notify
   use {
     'rcarriga/nvim-notify',
@@ -269,6 +272,14 @@ return packer.startup(function(use)
     "klen/nvim-test",
     config = function()
       require('nvim-test').setup()
+    end
+  }
+
+  -- Session Manager
+  use {
+    'rmagatti/auto-session',
+    config = function()
+      require('plugins.auto-session')
     end
   }
 
