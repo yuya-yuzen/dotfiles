@@ -23,9 +23,10 @@ keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 
--- Navigate buffers
+-- Buffers
 keymap("n", "t", ":bnext<CR>", opts)
 keymap("n", "T", ":bprevious<CR>", opts)
+keymap("n", "q", ":bdelete<CR>", opts)
 
 -- Move text up and down
 keymap("n", "∆", "<Esc>:m .+1<CR>", opts)
@@ -42,8 +43,6 @@ keymap("n", "U", "<C-r>", opts)
 
 keymap("n", "<C-s>", ":split<CR>", opts)
 keymap("n", "<C-v>", ":vsplit<CR>", opts)
-
-keymap("n", "q", ":close<CR>", opts)
 
 keymap("n", "<leader>t", ":tabe<CR>:terminal<CR>i", opts)
 

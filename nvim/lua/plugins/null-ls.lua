@@ -35,8 +35,16 @@ local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 null_ls.setup({
   sources = {
+    null_ls.builtins.formatting.stylua,
+    null_ls.builtins.diagnostics.luacheck.with({
+      extra_args = {
+        "--config",
+        "./../../.luacheckrc",
+      },
+    }),
     null_ls.builtins.formatting.prettier,
-
+    null_ls.builtins.diagnostics.eslint,
+    null_ls.builtins.diagnostics.jsonlint,
     null_ls.builtins.formatting.rubocop,
     null_ls.builtins.diagnostics.rubocop,
   },
