@@ -33,18 +33,22 @@ packer.init({
 return packer.startup(function(use)
   use("wbthomason/packer.nvim")
 
-  -- colorscheme
+  -- Colorscheme
   use({
-    "tanvirtin/monokai.nvim",
+    "folke/tokyonight.nvim",
     config = function()
-      require("monokai").setup()
+      vim.cmd([[colorscheme tokyonight]])
     end,
   })
 
   -- File Explorer
   use({
     "kyazdani42/nvim-tree.lua",
-    requires = "kyazdani42/nvim-web-devicons",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons",
+      "MunifTanjim/nui.nvim",
+    },
     tag = "nightly",
     config = function()
       require("nvim-tree").setup()
@@ -124,14 +128,6 @@ return packer.startup(function(use)
     end,
   })
 
-  -- Notify
-  use({
-    "rcarriga/nvim-notify",
-    config = function()
-      vim.notify = require("notify")
-    end,
-  })
-
   -- Display Key Map
   use({
     "folke/which-key.nvim",
@@ -153,7 +149,7 @@ return packer.startup(function(use)
   -- Multi Cursor
   use("mg979/vim-visual-multi")
 
-  -- Syntax highlight
+  -- Syntax Highlight
   use({
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
@@ -170,6 +166,35 @@ return packer.startup(function(use)
     requires = { "nvim-lua/plenary.nvim" },
     config = function()
       require("plugins.null-ls")
+    end,
+  })
+
+  -- Comment
+  use({
+    "numToStr/Comment.nvim",
+    config = function()
+      require("Comment").setup()
+    end,
+  })
+
+  -- Indent Line
+  use({
+    "lukas-reineke/indent-blankline.nvim",
+    config = function()
+      require("indent_blankline").setup({
+        space_char_blankline = " ",
+        show_current_context = true,
+        show_current_context_start = true,
+      })
+    end,
+  })
+
+  -- Git
+  use({
+    "lewis6991/gitsigns.nvim", -- 差分のある箇所をエディタ上に色で表示
+    tag = "release",
+    config = function()
+      require("gitsigns").setup()
     end,
   })
 

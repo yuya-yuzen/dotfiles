@@ -8,6 +8,7 @@ local options = {
   cursorcolumn = true,
 
   list = true, -- 制御文字を表示
+  listchars = "space:･,eol:↴",
 
   encoding = "utf-8",
   fileencoding = "utf-8",
