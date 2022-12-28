@@ -35,9 +35,9 @@ return packer.startup(function(use)
 
   -- Colorscheme
   use({
-    "folke/tokyonight.nvim",
+    "EdenEast/nightfox.nvim",
     config = function()
-      vim.cmd([[colorscheme tokyonight]])
+      vim.cmd([[colorscheme nightfox]])
     end,
   })
 
@@ -80,7 +80,7 @@ return packer.startup(function(use)
     "nvim-lualine/lualine.nvim",
     requires = "kyazdani42/nvim-web-devicons",
     config = function()
-      require("plugins.lualine")
+      require("lualine").setup()
     end,
   })
 
@@ -114,17 +114,10 @@ return packer.startup(function(use)
 
   -- Search in File
   -- 検索後 n keyで次の結果、 N keyで前の結果に移動
-  use("kevinhwang91/nvim-hlslens")
-
-  -- Scrollbar
   use({
-    "petertriho/nvim-scrollbar",
-    requires = {
-      "kevinhwang91/nvim-hlslens",
-      "folke/tokyonight.nvim",
-    },
+    "kevinhwang91/nvim-hlslens",
     config = function()
-      require("plugins.nvim-scrollbar")
+      require("hlslens").setup()
     end,
   })
 
@@ -147,6 +140,7 @@ return packer.startup(function(use)
   })
 
   -- Multi Cursor
+  -- ctrl + N で複数選択
   use("mg979/vim-visual-multi")
 
   -- Syntax Highlight
@@ -192,9 +186,40 @@ return packer.startup(function(use)
   -- Git
   use({
     "lewis6991/gitsigns.nvim", -- 差分のある箇所をエディタ上に色で表示
-    tag = "release",
     config = function()
       require("gitsigns").setup()
+    end,
+  })
+
+  -- memolist
+  use({
+    "glidenote/memolist.vim",
+    config = function()
+      vim.g.memolist_path = "~/.memolist/memo"
+      vim.g.memolist_memo_suffix = "md"
+      vim.g.memolist_fzf = 1
+      vim.g.memolist_template_dir_path = "~/.memolist/memotemplates"
+    end,
+  })
+  use({
+    "delphinus/telescope-memo.nvim",
+    requires = {
+      "glidenote/memolist.vim",
+      "nvim-telescope/telescope.nvim",
+    },
+    config = function()
+      require("telescope").load_extension("memo")
+      vim.api.nvim_set_keymap("n", "<leader>mn", ":MemoNew<CR>", { noremap = true, silent = true })
+      vim.api.nvim_set_keymap("n", "<leader>ml", ":Telescope memo list<CR>", { noremap = true, silent = true })
+      vim.api.nvim_set_keymap("n", "<leader>mg", ":Telescope memo live_grep<CR>", { noremap = true, silent = true })
+    end,
+  })
+
+  -- Scrollbar
+  use({
+    "petertriho/nvim-scrollbar",
+    config = function()
+      require("scrollbar").setup()
     end,
   })
 
