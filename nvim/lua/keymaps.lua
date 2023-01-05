@@ -8,6 +8,9 @@ keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- ESC(モード切替時)にIMEをOFFにする
+keymap("", "<ESC>", "<ESC>:set iminsert=0<CR>", opts)
+
 -- Modes
 --   normal_mode = "n",
 --   insert_mode = "i",
