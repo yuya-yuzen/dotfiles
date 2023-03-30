@@ -69,9 +69,6 @@ return packer.startup(function(use)
     end,
   })
 
-  -- Japanese Help
-  use("vim-jp/vimdoc-ja")
-
   -- Yank
   use("machakann/vim-highlightedyank")
 
