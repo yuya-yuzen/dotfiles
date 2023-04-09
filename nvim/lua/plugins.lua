@@ -66,6 +66,7 @@ return packer.startup(function(use)
     config = function()
       vim.api.nvim_set_keymap("n", "<leader>p", ":Telescope find_files<CR>", { noremap = true, silent = true })
       vim.api.nvim_set_keymap("n", "<leader>f", ":Telescope live_grep<CR>", { noremap = true, silent = true }) -- ripgrepが必要
+      vim.api.nvim_set_keymap("n", "<leader>g", ":Telescope git_status<CR>", { noremap = true, silent = true })
     end,
   })
 
@@ -150,6 +151,12 @@ return packer.startup(function(use)
       })
     end,
   })
+  use({
+    "nvim-treesitter/nvim-treesitter-context",
+    config = function()
+      require("treesitter-context").setup()
+    end,
+  })
 
   -- Formatter, Linter
   use({
@@ -185,6 +192,18 @@ return packer.startup(function(use)
     "lewis6991/gitsigns.nvim", -- 差分のある箇所をエディタ上に色で表示
     config = function()
       require("gitsigns").setup()
+      vim.api.nvim_set_keymap(
+        "n",
+        "]c",
+        '<cmd>lua require("gitsigns").next_hunk()<CR>',
+        { noremap = true, silent = true }
+      )
+      vim.api.nvim_set_keymap(
+        "n",
+        "[c",
+        '<cmd>lua require("gitsigns").prev_hunk()<CR>',
+        { noremap = true, silent = true }
+      )
     end,
   })
 
@@ -225,6 +244,30 @@ return packer.startup(function(use)
     "iamcco/markdown-preview.nvim",
     run = function()
       vim.fn["mkdp#util#install"]()
+    end,
+  })
+
+  -- Completion
+  use({
+    "hrsh7th/nvim-cmp",
+    requires = {
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      "L3MON4D3/LuaSnip",
+      "saadparwaiz1/cmp_luasnip",
+      "onsails/lspkind.nvim",
+    },
+    config = function()
+      require("plugins.nvim-cmp")
+    end,
+  })
+
+  -- Notify
+  use({
+    "rcarriga/nvim-notify",
+    config = function()
+      require("notify").setup({})
     end,
   })
 
