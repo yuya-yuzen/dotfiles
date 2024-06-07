@@ -1,5 +1,8 @@
 # Zsh
 
+.zshrcに下記を追加
+
 ```
-source ~/path/to/alias_settings.zsh
+# alias
+source ~/.zsh_alias_settings.zsh
 ```

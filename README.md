@@ -11,3 +11,9 @@ $ make setup.nvim
 ```shell
 $ make setup.wezterm
 ```
+
+## Zsh
+
+```shell
+$ make setup.zsh
+```
