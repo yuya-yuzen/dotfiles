@@ -16,12 +16,12 @@ config.keys =
   },
   {
     key = "d",
-    mods = "CMD",
+    mods = "CMD|SHIFT",
     action = wezterm.action { SplitVertical = { domain = "CurrentPaneDomain" } },
   },
   {
     key = "d",
-    mods = "CMD|SHIFT",
+    mods = "CMD",
     action = wezterm.action { SplitHorizontal = { domain = "CurrentPaneDomain" } },
   },
   {
